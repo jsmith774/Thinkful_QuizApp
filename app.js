@@ -9,7 +9,7 @@ const store = {
   // 5 or more questions are required
   questions: [
     {
-      question: 'All of the following are famous lines from Jerry Maguire, but which is most likely to be uttered by Thinkful graduates with their amazing new skill set?',
+      question: 'All of the following are famous lines from "Jerry Maguire", but which is most likely to be uttered by Thinkful graduates with their amazing new skill set?',
       answers: [
         'You had me at "hello"',
         'Show me the money!',
@@ -35,7 +35,7 @@ const store = {
       fact: 'Pacific Rim'
     },
     {
-      question: 'Not knowing this answer would be “Inconceivable”. There are many famous lines from “The Princess Bride including, “I am ______________. You killed my father. Prepare to die”',
+      question: 'Not knowing this answer would be “Inconceivable”. There are many famous lines from “The Princess Bride" including, “I am ______________. You killed my father. Prepare to die”',
       answers: [
         'John Rambo',
         'Inigo Montoya',
@@ -61,7 +61,7 @@ const store = {
       fact: 'Lord of The Rings: Fellowship of the Ring'
     },
     {
-      question: 'In the musical Hamilton, No one else was...?',
+      question: 'In the musical "Hamilton", No one else was...?',
       answers: [
         'as smart as me and never could be.',
         'at the bar, so I ordered 2 drinks and kept myself company.',
@@ -113,7 +113,7 @@ const store = {
       fact:'Ace Ventura: When Nature Calls'
     },
     {
-      question: 'You’re killing me, Smalls” is a famous one-liner from which movie?',
+      question: '"You’re killing me, Smalls” is a famous one-liner from which movie?',
       answers: [
         'Notorious',
         'Bad Santa',
@@ -151,9 +151,10 @@ let answerStatus = '';
 /*This function is to be run on document load to start application processing */
 function main() {
 
+  /**********  EVENT HANDLER FUNCTIONS **********/
+
   //QuestionView 'submitAnswer' button event handler
   $('body').on('click','#submitAnswer',event => {
-    //@todo check answer set correct true/false
     correct = checkAnswer();
 
     if(correct) {
@@ -170,6 +171,7 @@ function main() {
     render(getFeedbackViewHtml());
   });
 
+  //FeedbackView 'next' button event handler
   $('body').on('click','#continueQuiz', event=> {
     if(store.questionNumber < store.questions.length) {
       //continue to next question
@@ -180,6 +182,7 @@ function main() {
     }
   });
 
+  //Intro/Results "start quiz" button event handler
   $('body').on('click','#startQuiz', event => {
     store.score = 0;
     store.questionNumber = 0;
@@ -187,11 +190,14 @@ function main() {
   });
 
 
-  //enable submit button on question after an answer is selected
+  //enable submit button on question after an answer is selected (disabled initally to prevent skipping without answering)
   $('body').on('click','input', event => {
     $('button').removeAttr('disabled');
   });
 
+
+
+  /********* RENDER INTIAL PAGE INTRO VIEW **************/
   //Display introView on inital document load
   render(getIntroViewHtml());
 }
@@ -200,34 +206,14 @@ function checkAnswer() {
   const selectedAnswer = $('input[name=guess]:checked', '#answerOptions').val();
   const correctAnswer = store.questions[store.questionNumber].correctAnswer;
   
-  console.log("Selected Answer = " + selectedAnswer);
-  console.log("Correct Answer = " + correctAnswer);
-  
-  correct = selectedAnswer === correctAnswer;
-  console.log("correct?: " + correct);
-
-  return correct;
+  return selectedAnswer === correctAnswer;
 }
-/**
- * 
- * Technical requirements:
- * 
- * Your app should include a render() function, that regenerates the view each time the store is updated. 
- * See your course material, consult your instructor, and reference the slides for more details.
- *
- * NO additional HTML elements should be added to the index.html file.
- *
- * You may add attributes (classes, ids, etc) to the existing HTML elements, or link stylesheets or additional scripts if necessary
- *
- * SEE BELOW FOR THE CATEGORIES OF THE TYPES OF FUNCTIONS YOU WILL BE CREATING 👇
- * 
- */
+
 
 /********** TEMPLATE GENERATION FUNCTIONS **********/
 // These functions return HTML templates
 
-
-//@todo refactor these into a single getView(view) method and use switch/case to call appropriate getXHtmlString method
+//NOTE: these could be refactored into a single getView(view) method and use switch/case on view parm to call appropriate getXHtmlString method or merged with the 'get{VIEW}HtmlString()' methods
 function getIntroViewHtml() {
   const htmlString = getIntroHtmlString();
   return htmlString;
@@ -248,53 +234,18 @@ function getResultsViewHtml() {
   return htmlString;
 }
 
-function startNewGame() {
-  //init values - question index, correct/incorrect counts
-  store.questionNumber = 0;
-  store.score = 0;
-  render(getQuestionViewHtml());
-}
 
 /********** RENDER FUNCTION(S) **********/
 
 // This function conditionally replaces the contents of the <main> tag based on the state of the store
 function render(html) {
   $('main').html(html);
-  //@todo remove console.log
-  console.log($('main'));
 }
 
-/********** EVENT HANDLER FUNCTIONS **********/
-
-// These functions handle events (submit, click, etc)
-
-/*** handle click of 'Start' button on IntroView
- * startNewGame();
- **/
-
-/*** handle click of 'Submit' on QuestionView
- * 
- * Check answer and determine if correct/incorrect.  
- * Update correct/incorrect count
- * increment question index
- * Render feedback view
- */
 
 
-/*** handle click of 'Next' on FeedbackView
- * if more questions render Question view, else render Results view
- */
-
-/*** handle click of 'Play Again' on ResultsView 
- * startNewGame();
-*/
-
-
-
-
-/******* These functions simply return html string template literals */
+/******* These functions return html string template literals ******/
 function getIntroHtmlString() {
-  //@todo: replace with string template literal
   return `
     <section class="center">
       <!--Description of quiz-->
@@ -334,10 +285,6 @@ function getQuestionHtmlString() {
 }
 
 function getFeedbackHtmlString() {
-  //@todo remove temp vars until pull updated data store
-  //const youtube = 'https://youtu.be/BQjGGrKRL8o';
-  //const thumbnail = 'hamiltonThumb.jpg';
-  
   const currQ = store.questions[store.questionNumber-1]; //questionNumber index advanced to next question
   const youtube = currQ.youTube;
   const thumb = currQ.thumbNail;
@@ -372,7 +319,6 @@ function getFeedbackHtmlString() {
 }
 
 function getResultsHtmlString() {
-  //@todo replace hardcoded values with template ${variable} values as needed
   return `
     <section class="center">    
       <article class ="item border">
