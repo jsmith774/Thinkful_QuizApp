@@ -185,6 +185,11 @@ function main() {
   });
 
 
+  //enable submit button on question after an answer is selected
+  $('body').on('click','input', event => {
+    console.log("AN ANSWER WAS SELECTED");
+    $('button').removeAttr('disabled');
+  });
 
   //Display introView on inital document load
   render(getIntroViewHtml());
@@ -307,7 +312,7 @@ function getQuestionHtmlString() {
         <input type="radio" id="optionD" name="guess" value="D">
         <label for="optionD">${currQ.answers[3]}</label><br><br>
       </form>
-      <button id="submitAnswer">Submit</button>
+      <button id="submitAnswer" disabled>Submit</button>
     </div>
     <div id="progressResults">
       <div>Question ${currQNum+1} of ${store.questions.length}</div>
