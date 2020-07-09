@@ -301,11 +301,13 @@ function getQuestionHtmlString() {
 
 function getFeedbackHtmlString() {
   //@todo remove temp vars until pull updated data store
-  const youtube = 'https://youtu.be/BQjGGrKRL8o';
-  const thumbNail = 'hamiltonThumb.jpg';
+  //const youtube = 'https://youtu.be/BQjGGrKRL8o';
+  //const thumbnail = 'hamiltonThumb.jpg';
   
   const currQ = store.questions[store.questionNumber-1]; //questionNumber index advanced to next question
-  
+  const youtube = currQ.youTube;
+  const thumb = currQ.thumbNail;
+
   return `
     <div id="question">
       ${currQ.question}
@@ -330,7 +332,7 @@ function getFeedbackHtmlString() {
       <div id="newTabNotice">
         Clicking the thumbnail below will open a youtube clip of this video in a new tab
       </div>
-      <a href="${youtube}" target="_blank"><img src="images/${thumbNail}" alt="movie screen capture image thumbnail"></a>
+      <a href="${youtube}" target="_blank"><img src="${thumb}" alt="movie screen capture image thumbnail"></a>
     </div>
     <div>
       <button id="continueQuiz">Next</button>
