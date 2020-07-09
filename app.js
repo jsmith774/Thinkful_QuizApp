@@ -175,6 +175,16 @@ function main() {
     //}
   });
 
+  $('body').on('click','#continueQuiz', event=> {
+    if(store.questionNumber < store.questions.length) {
+      //continue to next question
+      render(getQuestionViewHtml());
+    } else {
+      //quiz is over, go to ResultsView
+      render(getResultsViewHtml()); 
+    }
+  });
+
   //Display introView on inital document load
   //render(getIntroViewHtml());
   /** Example of how to load other views NOT IN THIS main() !!! In event handler functions only */
