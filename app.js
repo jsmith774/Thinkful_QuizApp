@@ -34,14 +34,41 @@ const store = {
   score: 0
 };
 
+let correct = true;
+let answerStatusClass = '';
+let answerStatus = '';
+
 /*This function is to be run on document load to start application processing */
 function main() {
-  console.log(JSON.stringify(store));
+
+  //QuestionView 'submitAnswer' button event handler
+  $('body').on('click','#submitAnswer',event => {
+    //@todo check answer set correct true/false
+    if(correct) {
+      store.score++;
+      answerStatusClass = 'correctAnswer';
+      answerStatus = 'CORRECT';
+    } else {
+      answerStatusClass = 'incorrectAnswer';
+      answerStatus = 'INCORRECT';
+    }
+
+    store.questionNumber++;
+
+    render(getFeedbackViewHtml());
+
+  /****@todo THIS ACUTALLY GOES IN FEEDBACK EVEN HANDLER */
+    //if(store.questionNumber < store.questions.length-1) {
+    //  //render Question
+    //} else {
+    //  //render Results
+    //}
+  });
 
   //Display introView on inital document load
-  render(getIntroViewHtml());
+  //render(getIntroViewHtml());
   /** Example of how to load other views NOT IN THIS main() !!! In event handler functions only */
-  //render(getQuestionViewHtml());
+  render(getQuestionViewHtml());
   //render(getFeedbackViewHtml());
   //render(getResultsViewHtml());
 }
@@ -83,13 +110,14 @@ function getFeedbackViewHtml() {
 }
 
 function getResultsViewHtml() {
-  //@todo: replace with string template literal
   const htmlString = getResultsHtmlString();
   return htmlString;
 }
 
 function startNewGame() {
   //init values - question index, correct/incorrect counts
+  store.questionNumber = 0;
+  store.score = 0;
   render(getQuestionViewHtml());
 }
 
@@ -98,6 +126,7 @@ function startNewGame() {
 // This function conditionally replaces the contents of the <main> tag based on the state of the store
 function render(html) {
   $('main').html(html);
+  //@todo remove console.log
   console.log($('main'));
 }
 
@@ -110,11 +139,13 @@ function render(html) {
  **/
 
 /*** handle click of 'Submit' on QuestionView
+ * 
  * Check answer and determine if correct/incorrect.  
  * Update correct/incorrect count
  * increment question index
  * Render feedback view
  */
+
 
 /*** handle click of 'Next' on FeedbackView
  * if more questions render Question view, else render Results view
@@ -126,10 +157,6 @@ function render(html) {
 
 
 
-/*********************************************/
-//Run main() on load
-$(main);
-
 
 /******* These functions simply return html string template literals */
 function getIntroHtmlString() {
@@ -139,54 +166,58 @@ function getIntroHtmlString() {
       <!--Description of quiz-->
       <h2 class="item border">Welcome to the movie quiz! Here, your knowledge of various movie trivia and quotes will be tested. Good Luck!!</h2>
       <!--Button-->
-      <button class="item" type="submit">START!</button>
+      <button id="startQuiz" class="item" type="submit">START!</button>
     </section>`;
 }
 
 function getQuestionHtmlString() {
-  //@todo: replace hardcoded values with template ${variable} values as needed
+  const currQ = store.questions[store.questionNumber];
+  const currQNum = store.questionNumber; //zero based index, add one for human count
+
   return `
     <div id="question">
-      Question text goes here Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec blandit felis vehicula, consectetur mi eu, congue lorem. Suspendisse imperdiet vel nisl quis fringilla. Pellentesque libero elit, bibendum non velit.
+      ${currQ.question}
     </div>
     <div id="form-group">
       <form>
         <p>Please select your answer from the following:</p>
         <input type="radio" id="optionA" name="guess" value="A">
-        <label for="optionA">Some choice</label><br>
+        <label for="optionA">${currQ.answers[0]}</label><br>
         <input type="radio" id="optionB" name="guess" value="B">
-        <label for="optionB">Second choice</label><br>  
+        <label for="optionB">${currQ.answers[1]}</label><br>  
         <input type="radio" id="optionC" name="guess" value="C">
-        <label for="optionC">Another choice</label><br>
+        <label for="optionC">${currQ.answers[2]}</label><br>
         <input type="radio" id="optionD" name="guess" value="D">
-        <label for="optionD">Last choice</label><br><br>
-        <!--<input type="submit" value="Submit">-->
+        <label for="optionD">${currQ.answers[3]}</label><br><br>
       </form>
-      <button>Submit</button>
+      <button id="submitAnswer">Submit</button>
     </div>
     <div id="progressResults">
-      <div>Question 1 of 10</div>
-      <div>Correct: 0</div>
-      <div>Incorrect: 0</div>
+      <div>Question ${currQNum+1} of ${store.questions.length}</div>
+      <div>Correct: ${store.score}</div>
+      <div>Incorrect: ${currQNum - store.score}</div>
     </div>`;
 }
 
 function getFeedbackHtmlString() {
-  //@todo replace hardcoded values with template ${variable} values as needed
+  //@todo remove temp vars until pull updated data store
+  const youtube = 'https://youtu.be/BQjGGrKRL8o';
+  const thumbNail = 'hamiltonThumb.jpg';
+  
+  const currQ = store.questions[store.questionNumber-1]; //questionNumber index advanced to next question
+  
   return `
     <div id="question">
-      Question text goes here Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec blandit felis vehicula, consectetur mi eu, congue lorem. Suspendisse imperdiet vel nisl quis fringilla. Pellentesque libero elit, bibendum non velit.
+      ${currQ.question}
     </div>
     <div id="result">
       Your answer was:
-      <!--<span class="correctAnswer">CORRECT</span>-->
-          <!-- OR -->
-      <span class="incorrectAnswer">INCORRECT</span>
+      <span class="${answerStatusClass}">${answerStatus}</span>
     </div>
     <div id="answerBlock">
       The correct answer is:
       <div id="answer">
-        Lorem Ipsum Dolor
+        ${currQ.correctAnswer}
       </div>
       <div id="commentary">
         <p></p>A text explanation of the answer and/or additional information about the movie goes here. 
@@ -199,15 +230,15 @@ function getFeedbackHtmlString() {
       <div id="newTabNotice">
         Clicking the thumbnail below will open a youtube clip of this video in a new tab
       </div>
-      <a href="https://youtu.be/BQjGGrKRL8o" target="_blank"><img src="images/hamiltonThumb.jpg" alt="movie screen capture image thumbnail"></a>
+      <a href="${youtube}" target="_blank"><img src="images/${thumbNail}" alt="movie screen capture image thumbnail"></a>
     </div>
     <div>
-      <button>Next</button>
+      <button id="continueQuiz">Next</button>
     </div>`;
 }
 
 function getResultsHtmlString() {
-  //@todo: replace with string template literal
+  //@todo replace hardcoded values with template ${variable} values as needed
   return `
     <section class="center">    
       <article class ="item border">
@@ -215,6 +246,11 @@ function getResultsHtmlString() {
         <p>Response for how well you did could go here ¯\_(ツ)_/¯</p>
       </article>
       <!--Button-->
-      <button class="item" type="submit">Play Again?</button>
+      <button id="startQuiz" class="item" type="submit">Play Again?</button>
     </section>`;
 }
+
+
+/*********************************************/
+//Run main() on load
+$(main);
