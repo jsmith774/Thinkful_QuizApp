@@ -166,13 +166,6 @@ function main() {
     store.questionNumber++;
 
     render(getFeedbackViewHtml());
-
-  /****@todo THIS ACUTALLY GOES IN FEEDBACK EVEN HANDLER */
-    //if(store.questionNumber < store.questions.length-1) {
-    //  //render Question
-    //} else {
-    //  //render Results
-    //}
   });
 
   $('body').on('click','#continueQuiz', event=> {
@@ -185,12 +178,16 @@ function main() {
     }
   });
 
+  $('body').on('click','#startQuiz', event => {
+    store.score = 0;
+    store.questionNumber = 0;
+    render(getQuestionViewHtml());
+  });
+
+
+
   //Display introView on inital document load
-  //render(getIntroViewHtml());
-  /** Example of how to load other views NOT IN THIS main() !!! In event handler functions only */
-  render(getQuestionViewHtml());
-  //render(getFeedbackViewHtml());
-  //render(getResultsViewHtml());
+  render(getIntroViewHtml());
 }
 
 
@@ -362,8 +359,9 @@ function getResultsHtmlString() {
   return `
     <section class="center">    
       <article class ="item border">
-        <p>This is how well you did: #/#</p>
-        <p>Response for how well you did could go here ¯\_(ツ)_/¯</p>
+        <p> ¯\_(ツ)_/¯ </p>
+        <p>How well did you do?</p>
+        <p>You got ${store.score} out of ${store.questions.length} correct</p>
       </article>
       <!--Button-->
       <button id="startQuiz" class="item" type="submit">Play Again?</button>
