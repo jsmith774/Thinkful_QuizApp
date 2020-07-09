@@ -154,6 +154,8 @@ function main() {
   //QuestionView 'submitAnswer' button event handler
   $('body').on('click','#submitAnswer',event => {
     //@todo check answer set correct true/false
+    correct = checkAnswer();
+
     if(correct) {
       store.score++;
       answerStatusClass = 'correctAnswer';
@@ -187,7 +189,6 @@ function main() {
 
   //enable submit button on question after an answer is selected
   $('body').on('click','input', event => {
-    console.log("AN ANSWER WAS SELECTED");
     $('button').removeAttr('disabled');
   });
 
@@ -195,7 +196,18 @@ function main() {
   render(getIntroViewHtml());
 }
 
+function checkAnswer() {
+  const selectedAnswer = $('input[name=guess]:checked', '#answerOptions').val();
+  const correctAnswer = store.questions[store.questionNumber].correctAnswer;
+  
+  console.log("Selected Answer = " + selectedAnswer);
+  console.log("Correct Answer = " + correctAnswer);
+  
+  correct = selectedAnswer === correctAnswer;
+  console.log("correct?: " + correct);
 
+  return correct;
+}
 /**
  * 
  * Technical requirements:
@@ -301,15 +313,15 @@ function getQuestionHtmlString() {
       ${currQ.question}
     </div>
     <div id="form-group">
-      <form>
+      <form id="answerOptions">
         <p>Please select your answer from the following:</p>
-        <input type="radio" id="optionA" name="guess" value="A">
+        <input type="radio" id="optionA" name="guess" value="${currQ.answers[0]}">
         <label for="optionA">${currQ.answers[0]}</label><br>
-        <input type="radio" id="optionB" name="guess" value="B">
+        <input type="radio" id="optionB" name="guess" value="${currQ.answers[1]}">
         <label for="optionB">${currQ.answers[1]}</label><br>  
-        <input type="radio" id="optionC" name="guess" value="C">
+        <input type="radio" id="optionC" name="guess" value="${currQ.answers[2]}">
         <label for="optionC">${currQ.answers[2]}</label><br>
-        <input type="radio" id="optionD" name="guess" value="D">
+        <input type="radio" id="optionD" name="guess" value="${currQ.answers[3]}">
         <label for="optionD">${currQ.answers[3]}</label><br><br>
       </form>
       <button id="submitAnswer" disabled>Submit</button>
