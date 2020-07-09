@@ -1,11 +1,10 @@
 /* Your styles should be mobile-first and responsive */
 
-/** 
-  * If you are unclear on how to utilize a mobile-first, responsive technique to write your CSS, here is an example: 
-  *
-  * https://github.com/andreacardybailey/responsive_example/blob/master/styles/responsive-base.css 
-  *
-*/
+@import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap');
+body{
+  font-family: 'Balsamiq Sans', cursive;
+}
+
 main {
   display: flex;
   flex-direction: column;
@@ -22,6 +21,19 @@ h1 {
   background-color: blue;
   color: white;
   border-bottom: 2px solid black;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  margin: 20px;
+}
+
+.border {
+  border: 3px solid black;
+  padding: 30px;
 }
 
 #form-group {
@@ -81,7 +93,6 @@ div#commentary {
   font-size: .8em;
   font-weight: normal;
 }
-
 
 .correctAnswer {
   color: green;

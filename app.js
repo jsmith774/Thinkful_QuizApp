@@ -46,11 +46,6 @@ function main() {
   //render(getResultsViewHtml());
 }
 
-function render(html) {
-  $('main').html(html);
-  console.log($('main'));
-}
-
 
 /**
  * 
@@ -89,30 +84,63 @@ function getFeedbackViewHtml() {
 
 function getResultsViewHtml() {
   //@todo: replace with string template literal
-  const htmlString = `<h3>TEMP: Results View HTML Placeholder</h3>${Date.now()}`;
+  const htmlString = getResultsHtmlString();
   return htmlString;
 }
 
-
+function startNewGame() {
+  //init values - question index, correct/incorrect counts
+  render(getQuestionViewHtml());
+}
 
 /********** RENDER FUNCTION(S) **********/
 
 // This function conditionally replaces the contents of the <main> tag based on the state of the store
+function render(html) {
+  $('main').html(html);
+  console.log($('main'));
+}
 
 /********** EVENT HANDLER FUNCTIONS **********/
 
 // These functions handle events (submit, click, etc)
 
+/*** handle click of 'Start' button on IntroView
+ * startNewGame();
+ **/
+
+/*** handle click of 'Submit' on QuestionView
+ * Check answer and determine if correct/incorrect.  
+ * Update correct/incorrect count
+ * increment question index
+ * Render feedback view
+ */
+
+/*** handle click of 'Next' on FeedbackView
+ * if more questions render Question view, else render Results view
+ */
+
+/*** handle click of 'Play Again' on ResultsView 
+ * startNewGame();
+*/
+
+
+
+/*********************************************/
+//Run main() on load
 $(main);
 
 
 /******* These functions simply return html string template literals */
 function getIntroHtmlString() {
   //@todo: replace with string template literal
-  return `<h3>TEMP Intro View HTML</h3>
-    <div>Div 1</div>
-    <div>Placeholder Div2</div>
-    ${Date.now()}`;
+  return `
+    <section class="center">
+      <!--Description of quiz-->
+      <h2 class="item border">Welcome to the movie quiz! Here, your knowledge of various movie trivia and quotes will be tested. Good Luck!!</h2>
+      <!--Button-->
+      <button class="item" type="submit">START!</button>
+    </section>`;
 }
 
 function getQuestionHtmlString() {
@@ -180,8 +208,13 @@ function getFeedbackHtmlString() {
 
 function getResultsHtmlString() {
   //@todo: replace with string template literal
-  return `<h3>TEMP Results View HTML</h3>
-    <div>Div 1</div>
-    <div>Placeholder Div2</div>
-    ${Date.now()}`;
+  return `
+    <section class="center">    
+      <article class ="item border">
+        <p>This is how well you did: #/#</p>
+        <p>Response for how well you did could go here ¯\_(ツ)_/¯</p>
+      </article>
+      <!--Button-->
+      <button class="item" type="submit">Play Again?</button>
+    </section>`;
 }
