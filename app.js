@@ -9,24 +9,124 @@ const store = {
   // 5 or more questions are required
   questions: [
     {
-      question: 'What color is broccoli?',
+      question: 'All of the following are famous lines from Jerry Maguire, but which is most likely to be uttered by Thinkful graduates with their amazing new skill set?',
       answers: [
-        'red',
-        'orange',
-        'pink',
-        'green'
+        'You had me at "hello"',
+        'Show me the money!',
+        'Towel? Nah, I air dry.',
+        'You complete me.'
       ],
-      correctAnswer: 'green'
+      correctAnswer: 'Show me the money!',
+      thumbNail: 'images/jerryMacguireThumb.jpg',
+      youTube: 'https://youtu.be/FFrag8ll85w?t=76'
     },
     {
-      question: 'What is the current year?',
+      question: 'What was cancelled in this giant robot epic?',
       answers: [
-        '1970',
-        '2015',
-        '2019',
-        '2005'
+        'The Nightmare!',
+        'All Student Loans!',
+        'The Apocalypse!',
+        'The Invasion!'
       ],
-      correctAnswer: '2019'
+      correctAnswer: 'The Apocalypse!',
+      thumbNail: 'images/pacificRimThumb.jpg',
+      youTube: 'https://youtu.be/-7Sow81yi24?t=107'
+    },
+    {
+      question: 'Not knowing this answer would be “Inconceivable”. There are many famous lines from “The Princess Bride including, “I am ______________. You killed my father. Prepare to die”',
+      answers: [
+        'John Rambo',
+        'Inigo Montoya',
+        'Monty Python',
+        'Engelbert Humperdinck'
+      ],
+      correctAnswer: 'Inigo Montoya',
+      thumbNail:'images/thePrincessBrideThumb.jpg',
+      youTube:'https://youtu.be/I73sP93-0xA?t=36'
+    },
+    {
+      question: 'How many meals are mentioned by Pippin when talking to Aragorn after the Hobbits stopped briefly?',
+      answers: [
+        'Seven',
+        'Five',
+        'Nine',
+        'Elevensies'
+      ],
+      correctAnswer: 'Seven',
+      thumbNail: 'images/lordOfTheRingsThumb.jpg',
+      youTube: 'https://youtu.be/gA8LV37QwxA?t=7'
+    },
+    {
+      question: 'In the musical Hamilton, No one else was...?',
+      answers: [
+        'as smart as me and never could be.',
+        'at the bar, so I ordered 2 drinks and kept myself company.',
+        'able to match the kind of raw talent he possessed.',
+        'in the room where it happens.'
+      ],
+      correctAnswer: 'in the room where it happens.',
+      thumbNail: 'images/hamiltonThumb.jpg',
+      youTube: 'https://youtu.be/BQjGGrKRL8o'
+    },
+    {
+      question: 'What dance would one be describing if they began with, “It’s just a jump to the left, and then a step to the right. With your hands on your hips, you bring your knees in tight…”?',
+      answers: [
+        'The Time Warp',
+        'The Tulsa Two-Step',
+        'The Swift Shuffle',
+        'The Jitterbug'
+      ],
+      correctAnswer: 'The Time Warp',
+      thumbNail: 'images/theRockyHorrorPictureShowThumb.jpg',
+      youTube: 'https://youtu.be/umj0gu5nEGs?t=51'
+    },
+    {
+      question: 'What movie is this quote from when screamed by an eccentric scientist: "1.21 GIGAWATTS!!!!"',
+      answers: [
+        'Back to the Future',
+        'Short Circuit',
+        'RoboCop',
+        'Star Wars'
+      ],
+      correctAnswer: 'Back to the Future',
+      thumbNail: 'images/backToTheFutureThumb.jpg',
+      youTube: 'https://youtu.be/f-77xulkB_U?t=53'
+    },
+    {
+      question: 'What movie is this quote from after a "perfect" parking job: "LIKE A GLOVE!!!"?',
+      answers: [
+        'The Fast and The Furious',
+        'Cinderella',
+        'Ace Ventura: When Nature Calls',
+        'Gone in Sixty Seconds'
+      ],
+      correctAnswer: 'Ace Ventura: When Nature Calls',
+      thumbNail: 'images/aceVenturaThumb.jpg',
+      youTube: 'https://youtu.be/fCy4yhiJw4g?t=193'
+    },
+    {
+      question: 'You’re killing me, Smalls” is a famous one-liner from which movie?',
+      answers: [
+        'Notorious',
+        'Bad Santa',
+        'Straight outta Compton',
+        'The Sandlot'
+      ],
+      correctAnswer: 'The Sandlot',
+      thumbNail: 'images/sandlotThumb.jpg',
+      youTube: 'https://youtu.be/hxJPJ6JY0Pk'
+    },
+    {
+      question: 'What movie is this quote from after they nozzed it all up: "So, unless we intend to do this job in Reno, we\'re in Barney.......Barney Rubble........TROUBLE!"?',
+      answers: [
+        'The Italian Job',
+        'The Score',
+        'Ocean\'s Eleven',
+        'Logan Lucky'
+      ],
+      correctAnswer: 'Ocean\'s Eleven',
+      thumbNail: 'images/oceansElevenThumb.jpg',
+      youTube: 'https://youtu.be/wvcDT02a1Ec?t=51'
     }
   ],
   quizStarted: false,
@@ -39,7 +139,7 @@ function main() {
   console.log(JSON.stringify(store));
 
   //Display introView on inital document load
-  render(getIntroViewHtml());
+  //render(getIntroViewHtml());
   /** Example of how to load other views NOT IN THIS main() !!! In event handler functions only */
   //render(getQuestionViewHtml());
   //render(getFeedbackViewHtml());
