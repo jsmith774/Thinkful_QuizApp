@@ -18,7 +18,8 @@ const store = {
       ],
       correctAnswer: 'Show me the money!',
       thumbNail: 'images/jerryMacguireThumb.jpg',
-      youTube: 'https://youtu.be/FFrag8ll85w?t=76'
+      youTube: 'https://youtu.be/FFrag8ll85w?t=76',
+      fact: 'Jerry Macguire'
     },
     {
       question: 'What was cancelled in this giant robot epic?',
@@ -30,7 +31,8 @@ const store = {
       ],
       correctAnswer: 'The Apocalypse!',
       thumbNail: 'images/pacificRimThumb.jpg',
-      youTube: 'https://youtu.be/-7Sow81yi24?t=107'
+      youTube: 'https://youtu.be/-7Sow81yi24?t=107',
+      fact: 'Pacific Rim'
     },
     {
       question: 'Not knowing this answer would be “Inconceivable”. There are many famous lines from “The Princess Bride including, “I am ______________. You killed my father. Prepare to die”',
@@ -42,7 +44,8 @@ const store = {
       ],
       correctAnswer: 'Inigo Montoya',
       thumbNail:'images/thePrincessBrideThumb.jpg',
-      youTube:'https://youtu.be/I73sP93-0xA?t=36'
+      youTube:'https://youtu.be/I73sP93-0xA?t=36',
+      fact: 'The Princess Bride'
     },
     {
       question: 'How many meals are mentioned by Pippin when talking to Aragorn after the Hobbits stopped briefly?',
@@ -54,7 +57,8 @@ const store = {
       ],
       correctAnswer: 'Seven',
       thumbNail: 'images/lordOfTheRingsThumb.jpg',
-      youTube: 'https://youtu.be/gA8LV37QwxA?t=7'
+      youTube: 'https://youtu.be/gA8LV37QwxA?t=7',
+      fact: 'Lord of The Rings: Fellowship of the Ring'
     },
     {
       question: 'In the musical Hamilton, No one else was...?',
@@ -66,7 +70,8 @@ const store = {
       ],
       correctAnswer: 'in the room where it happens.',
       thumbNail: 'images/hamiltonThumb.jpg',
-      youTube: 'https://youtu.be/BQjGGrKRL8o'
+      youTube: 'https://youtu.be/BQjGGrKRL8o',
+      fact: 'Hamilton: The Musical'
     },
     {
       question: 'What dance would one be describing if they began with, “It’s just a jump to the left, and then a step to the right. With your hands on your hips, you bring your knees in tight…”?',
@@ -78,7 +83,8 @@ const store = {
       ],
       correctAnswer: 'The Time Warp',
       thumbNail: 'images/theRockyHorrorPictureShowThumb.jpg',
-      youTube: 'https://youtu.be/umj0gu5nEGs?t=51'
+      youTube: 'https://youtu.be/umj0gu5nEGs?t=51',
+      fact: 'The Rocky Horror Picture SHow'
     },
     {
       question: 'What movie is this quote from when screamed by an eccentric scientist: "1.21 GIGAWATTS!!!!"',
@@ -90,7 +96,8 @@ const store = {
       ],
       correctAnswer: 'Back to the Future',
       thumbNail: 'images/backToTheFutureThumb.jpg',
-      youTube: 'https://youtu.be/f-77xulkB_U?t=53'
+      youTube: 'https://youtu.be/f-77xulkB_U?t=53',
+      fact: 'Back to the Future'
     },
     {
       question: 'What movie is this quote from after a "perfect" parking job: "LIKE A GLOVE!!!"?',
@@ -102,7 +109,8 @@ const store = {
       ],
       correctAnswer: 'Ace Ventura: When Nature Calls',
       thumbNail: 'images/aceVenturaThumb.jpg',
-      youTube: 'https://youtu.be/fCy4yhiJw4g?t=193'
+      youTube: 'https://youtu.be/fCy4yhiJw4g?t=193',
+      fact:'Ace Ventura: When Nature Calls'
     },
     {
       question: 'You’re killing me, Smalls” is a famous one-liner from which movie?',
@@ -114,7 +122,8 @@ const store = {
       ],
       correctAnswer: 'The Sandlot',
       thumbNail: 'images/sandlotThumb.jpg',
-      youTube: 'https://youtu.be/hxJPJ6JY0Pk'
+      youTube: 'https://youtu.be/hxJPJ6JY0Pk',
+      fact:'The Sandlot'
     },
     {
       question: 'What movie is this quote from after they nozzed it all up: "So, unless we intend to do this job in Reno, we\'re in Barney.......Barney Rubble........TROUBLE!"?',
@@ -126,7 +135,8 @@ const store = {
       ],
       correctAnswer: 'Ocean\'s Eleven',
       thumbNail: 'images/oceansElevenThumb.jpg',
-      youTube: 'https://youtu.be/wvcDT02a1Ec?t=51'
+      youTube: 'https://youtu.be/wvcDT02a1Ec?t=51',
+      fact:'Ocean\'s Elven'
     }
   ],
   quizStarted: false,
@@ -322,9 +332,7 @@ function getFeedbackHtmlString() {
         ${currQ.correctAnswer}
       </div>
       <div id="commentary">
-        <p></p>A text explanation of the answer and/or additional information about the movie goes here. 
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum auctor dolor arcu, eu dictum lectus consectetur sed. Aenean tempus sed erat et eleifend. Suspendisse venenatis blandit finibus. Duis pellentesque mauris vestibulum, gravida mauris aliquet, eleifend ipsum. Vestibulum odio massa, elementum sit amet nisi vitae, sodales lobortis nunc. Praesent efficitur ultricies purus id commodo. Duis fringilla, purus vitae tempor ultrices, libero mi convallis mauris, et aliquam augue nunc vitae sapien. Sed suscipit convallis ipsum, vitae suscipit tortor venenatis a. Donec et rutrum nulla, sed tincidunt orci. In hac habitasse platea dictumst.</p>
-        <p>Mauris viverra sollicitudin ligula, at ornare neque facilisis id. Nullam lacinia varius posuere. Ut risus erat, mollis nec dui pulvinar, ultrices sodales sem. Proin lacinia nisi velit. Vivamus ex tellus, venenatis sit amet gravida eu, interdum ut lorem. Cras nec rutrum tortor, sit amet rutrum erat. Mauris porta odio ut massa fringilla posuere. Donec dolor dui, luctus non sapien eget, lacinia pellentesque ipsum. Nam interdum tellus vitae augue sagittis fringilla. Aenean sed tortor eget eros rutrum elementum tempor at lacus. Nam a nibh ligula. Ut imperdiet libero sed sollicitudin faucibus. Duis tincidunt neque eu ipsum rutrum, id dignissim risus rhoncus. Duis non lacus purus.</p>  
+        ${currQ.fact}
       </div>
     </div>
     <div id="movieClip">
