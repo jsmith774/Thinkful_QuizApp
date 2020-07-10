@@ -322,7 +322,7 @@ function getResultsHtmlString() {
   return `
     <section class="center">    
       <article class ="item border">
-        <p> ¯\_(ツ)_/¯ </p>
+        <p> ¯\\_(ツ)_/¯ </p>
         <p>How well did you do?</p>
         <p>You got ${store.score} out of ${store.questions.length} correct</p>
       </article>
