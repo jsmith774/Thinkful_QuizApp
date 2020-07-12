@@ -259,10 +259,10 @@ function getQuestionHtmlString() {
   const currQNum = store.questionNumber; //zero based index, add one for human count
 
   return `
-    <div id="question">
+    <section id="question">
       ${currQ.question}
-    </div>
-    <div id="form-group">
+    </section>
+    <section id="form-group">
       <form id="answerOptions">
         <p>Please select your answer from the following:</p>
         <input type="radio" id="optionA" name="guess" value="${currQ.answers[0]}">
@@ -275,12 +275,12 @@ function getQuestionHtmlString() {
         <label for="optionD">${currQ.answers[3]}</label><br><br>
       </form>
       <button id="submitAnswer" disabled>Submit</button>
-    </div>
-    <div id="progressResults">
-      <div>Question ${currQNum + 1} of ${store.questions.length}</div>
-      <div>Correct: ${store.score}</div>
-      <div>Incorrect: ${currQNum - store.score}</div>
-    </div>`;
+    </section>
+    <section id="progressResults">
+      <section>Question ${currQNum + 1} of ${store.questions.length}</section>
+      <section>Correct: ${store.score}</section>
+      <section>Incorrect: ${currQNum - store.score}</section>
+    </section>`;
 }
 
 function getFeedbackHtmlString() {
@@ -289,32 +289,33 @@ function getFeedbackHtmlString() {
   const thumb = currQ.thumbNail;
 
   return `
-    <div id="question">
+    <section id="question">
       ${currQ.question}
-    </div>
-    <div id="result">
+    </section>
+    <section id="result">
       Your answer was:
       <span class="${answerStatusClass}">${answerStatus}</span>
-    </div>
-    <div id="answerBlock">
+    </section>
+    <section id="answerBlock">
       The correct answer is:
-      <div id="answer">
+      <section id="answer">
         ${currQ.correctAnswer}
-      </div>
-      <div id="commentary">
+      </section>
+      <article class ="border" id="commentary">
+        <p>Fun Fact:</p>
         ${currQ.fact}
-      </div>
-    </div>
-    <div id="movieClip">
+      </article>
+    </section>
+    <section id="movieClip">
       <h2>Sample Clip</h2>
-      <div id="newTabNotice">
+      <section id="newTabNotice">
         Clicking the thumbnail below will open a youtube clip of this video in a new tab
-      </div>
+      </section>
       <a href="${youtube}" target="_blank"><img src="${thumb}" alt="movie screen capture image thumbnail"></a>
-    </div>
-    <div>
+    </section>
+    <section>
       <button id="continueQuiz">Next</button>
-    </div>`;
+    </section>`;
 }
 
 function getResultsHtmlString() {
