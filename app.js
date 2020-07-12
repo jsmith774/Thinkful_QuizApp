@@ -42,8 +42,8 @@ const store = {
         'Engelbert Humperdinck'
       ],
       correctAnswer: 'Inigo Montoya',
-      thumbNail:'images/thePrincessBrideThumb.jpg',
-      youTube:'https://youtu.be/I73sP93-0xA?t=36',
+      thumbNail: 'images/thePrincessBrideThumb.jpg',
+      youTube: 'https://youtu.be/I73sP93-0xA?t=36',
       fact: 'When author William Goldman was first mounting a film adaptation of his novel The Princess Bride in the ‘70s, his top choice for the role of Fezzik was always André the Giant. However, Goldman was struggling to get the famed wrestler to even read for the part. Meanwhile, a then-unknown Arnold Schwarzenegger was eager to play the character. Goldman considered casting him, but by the time the movie actually went into production over a decade later, Schwarzenegger had become one of the biggest movie stars in the world and The Princess Bride’s producers couldn’t afford him, so they got André the Giant for the part after all.'
     },
     {
@@ -109,7 +109,7 @@ const store = {
       correctAnswer: 'Ace Ventura: When Nature Calls',
       thumbNail: 'images/aceVenturaThumb.jpg',
       youTube: 'https://youtu.be/fCy4yhiJw4g?t=193',
-      fact:'According to Jeff Daniels, Jim Carrey had explained to him the reasons why he didn\'t like the sequel much. He disliked the whole "Ace is afraid of bats" angle, as he found it to be cheap, and even fought with the director about changing the script so that Ace was merely allergic to bats. Carrey was also very nervous about the film\'s depiction of the native characters, and that people might take offense to them. He\'s even surprised the film hasn\'t been outright banned.'
+      fact: 'According to Jeff Daniels, Jim Carrey had explained to him the reasons why he didn\'t like the sequel much. He disliked the whole "Ace is afraid of bats" angle, as he found it to be cheap, and even fought with the director about changing the script so that Ace was merely allergic to bats. Carrey was also very nervous about the film\'s depiction of the native characters, and that people might take offense to them. He\'s even surprised the film hasn\'t been outright banned.'
     },
     {
       question: '"You’re killing me, Smalls” is a famous one-liner from which movie?',
@@ -122,7 +122,7 @@ const store = {
       correctAnswer: 'The Sandlot',
       thumbNail: 'images/sandlotThumb.jpg',
       youTube: 'https://youtu.be/hxJPJ6JY0Pk',
-      fact:'Ham Porter\'s famous line, "You\'re killing me, Smalls," is a paraphrase of the famous quote, "They\'re killing me out there, Whitey," spoken by Denver Broncos coach Lou Saban. The line was also paraphrased the previous year in another baseball-themed film, A League of Their Own(1992).'
+      fact: 'Ham Porter\'s famous line, "You\'re killing me, Smalls," is a paraphrase of the famous quote, "They\'re killing me out there, Whitey," spoken by Denver Broncos coach Lou Saban. The line was also paraphrased the previous year in another baseball-themed film, A League of Their Own(1992).'
     },
     {
       question: 'What movie is this quote from after they nozzed it all up: "So, unless we intend to do this job in Reno, we\'re in Barney.......Barney Rubble........TROUBLE!"?',
@@ -135,7 +135,7 @@ const store = {
       correctAnswer: 'Ocean\'s Eleven',
       thumbNail: 'images/oceansElevenThumb.jpg',
       youTube: 'https://youtu.be/wvcDT02a1Ec?t=51',
-      fact:'Don Cheadle is uncredited despite having a major role. This is due to a dispute over his billing. Cheadle wanted above the title billing alongside George Clooney, Matt Damon, and Brad Pitt. When he was refused, he refused to be credited at all. Cheadle received above the title billing in Ocean\'s Twelve (2004) and Ocean\'s Thirteen (2007).'
+      fact: 'Don Cheadle is uncredited despite having a major role. This is due to a dispute over his billing. Cheadle wanted above the title billing alongside George Clooney, Matt Damon, and Brad Pitt. When he was refused, he refused to be credited at all. Cheadle received above the title billing in Ocean\'s Twelve (2004) and Ocean\'s Thirteen (2007).'
     }
   ],
   quizStarted: false,
@@ -153,10 +153,10 @@ function main() {
   /**********  EVENT HANDLER FUNCTIONS **********/
 
   //QuestionView 'submitAnswer' button event handler
-  $('body').on('click','#submitAnswer',event => {
+  $('body').on('click', '#submitAnswer', event => {
     correct = checkAnswer();
 
-    if(correct) {
+    if (correct) {
       store.score++;
       answerStatusClass = 'correctAnswer';
       answerStatus = 'CORRECT';
@@ -171,18 +171,18 @@ function main() {
   });
 
   //FeedbackView 'next' button event handler
-  $('body').on('click','#continueQuiz', event=> {
-    if(store.questionNumber < store.questions.length) {
+  $('body').on('click', '#continueQuiz', event => {
+    if (store.questionNumber < store.questions.length) {
       //continue to next question
       render(getQuestionViewHtml());
     } else {
       //quiz is over, go to ResultsView
-      render(getResultsViewHtml()); 
+      render(getResultsViewHtml());
     }
   });
 
   //Intro/Results "start quiz" button event handler
-  $('body').on('click','#startQuiz', event => {
+  $('body').on('click', '#startQuiz', event => {
     store.score = 0;
     store.questionNumber = 0;
     render(getQuestionViewHtml());
@@ -190,7 +190,7 @@ function main() {
 
 
   //enable submit button on question after an answer is selected (disabled initally to prevent skipping without answering)
-  $('body').on('click','input', event => {
+  $('body').on('click', 'input', event => {
     $('button').removeAttr('disabled');
   });
 
@@ -204,7 +204,7 @@ function main() {
 function checkAnswer() {
   const selectedAnswer = $('input[name=guess]:checked', '#answerOptions').val();
   const correctAnswer = store.questions[store.questionNumber].correctAnswer;
-  
+
   return selectedAnswer === correctAnswer;
 }
 
@@ -277,14 +277,14 @@ function getQuestionHtmlString() {
       <button id="submitAnswer" disabled>Submit</button>
     </div>
     <div id="progressResults">
-      <div>Question ${currQNum+1} of ${store.questions.length}</div>
+      <div>Question ${currQNum + 1} of ${store.questions.length}</div>
       <div>Correct: ${store.score}</div>
       <div>Incorrect: ${currQNum - store.score}</div>
     </div>`;
 }
 
 function getFeedbackHtmlString() {
-  const currQ = store.questions[store.questionNumber-1]; //questionNumber index advanced to next question
+  const currQ = store.questions[store.questionNumber - 1]; //questionNumber index advanced to next question
   const youtube = currQ.youTube;
   const thumb = currQ.thumbNail;
 
@@ -318,12 +318,36 @@ function getFeedbackHtmlString() {
 }
 
 function getResultsHtmlString() {
+  let result = '';
+  switch (store.score) {
+  case 10:
+    result = 'images/perfect.jpg';
+    break;
+  case 9:
+  case 8:
+  case 7:
+  case 6:
+  case 5:
+    result = 'images/wellDone.jpg';
+    break;
+  case 4:
+  case 3:
+  case 2:
+  case 1:  
+    result = 'images/youTried.jpg';
+    break;
+  case 0:
+    result = 'images/tryAgain.jpg';
+    break;
+  }
+
   return `
     <section class="center">    
       <article class ="item border">
         <p> ¯\\_(ツ)_/¯ </p>
         <p>How well did you do?</p>
         <p>You got ${store.score} out of ${store.questions.length} correct!</p>
+        <img src="${result}" alt="result feedback">
       </article>
       <!--Button-->
       <button id="startQuiz" class="item" type="submit">Play Again?</button>
