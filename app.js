@@ -1,6 +1,5 @@
 /* eslint-env jquery */
 /* eslint-disable no-console */
-'use strict';
 
 /**
  * Example store structure
@@ -19,7 +18,7 @@ const store = {
       correctAnswer: 'Show me the money!',
       thumbNail: 'images/jerryMacguireThumb.jpg',
       youTube: 'https://youtu.be/FFrag8ll85w?t=76',
-      fact: 'Jerry Macguire'
+      fact: 'Much of the inspiration for Jerry as a sports agent came from Leigh Steinberg, a real-life agent who served as a consultant on the film. You can see him in the movie as the man who introduces Jerry to Troy Aikman (a real-life Steinberg client). He\'d have had a bigger role in the movie, playing Jerry\'s brother, who gives an unflattering toast at Jerry\'s bachelor party, but he didn\'t want to come off as a villain. "To this day, I may be the only actor who ever talked his way out of a scene with Tom Cruise," he claims.'
     },
     {
       question: 'What was cancelled in this giant robot epic?',
@@ -32,7 +31,7 @@ const store = {
       correctAnswer: 'The Apocalypse!',
       thumbNail: 'images/pacificRimThumb.jpg',
       youTube: 'https://youtu.be/-7Sow81yi24?t=107',
-      fact: 'Pacific Rim'
+      fact: 'Most of the film’s special effects were computer-generated, but not everything was digital. For the robot cockpit scenes, del Toro had his team build the interior of a full-scale Jaeger head. The finished product stood four stories tall and weighed 20 tons. And like a Tilt-A-Whirl from hell, it was designed to rock around violently on its platform via a network of hydraulics. Once inside, the actors were forced to don 40-pound suits of armor. Then the crew strapped their feet into an apparatus that Charlie Hunnam has compared to a high-resistance elliptical machine.'
     },
     {
       question: 'Not knowing this answer would be “Inconceivable”. There are many famous lines from “The Princess Bride" including, “I am ______________. You killed my father. Prepare to die”',
@@ -45,20 +44,20 @@ const store = {
       correctAnswer: 'Inigo Montoya',
       thumbNail:'images/thePrincessBrideThumb.jpg',
       youTube:'https://youtu.be/I73sP93-0xA?t=36',
-      fact: 'The Princess Bride'
+      fact: 'When author William Goldman was first mounting a film adaptation of his novel The Princess Bride in the ‘70s, his top choice for the role of Fezzik was always André the Giant. However, Goldman was struggling to get the famed wrestler to even read for the part. Meanwhile, a then-unknown Arnold Schwarzenegger was eager to play the character. Goldman considered casting him, but by the time the movie actually went into production over a decade later, Schwarzenegger had become one of the biggest movie stars in the world and The Princess Bride’s producers couldn’t afford him, so they got André the Giant for the part after all.'
     },
     {
-      question: 'How many meals are mentioned by Pippin when talking to Aragorn after the Hobbits stopped briefly?',
+      question: 'What meal were the hobbits stopping for when initially traveling with Aragorn?',
       answers: [
-        'Seven',
-        'Five',
-        'Nine',
-        'Elevensies'
+        'Second Breakfast',
+        'Dinner',
+        'Supper',
+        'Elevenses'
       ],
-      correctAnswer: 'Seven',
+      correctAnswer: 'Second Breakfast',
       thumbNail: 'images/lordOfTheRingsThumb.jpg',
       youTube: 'https://youtu.be/gA8LV37QwxA?t=7',
-      fact: 'Lord of The Rings: Fellowship of the Ring'
+      fact: 'When pitching the film to various studios, Peter Jackson and Fran Walsh presented a screenplay for two movies, believing that no studio would ever greenlight a trilogy. At first, only Miramax showed interest, but with the caveat that the screenplay be further cut to fit the entire "LOTR" story into one movie. As a last ditch attempt, Jackson pitched the film to New Line, who asked for the screenplay to be turned into a trilogy.'
     },
     {
       question: 'In the musical "Hamilton", No one else was...?',
@@ -71,7 +70,7 @@ const store = {
       correctAnswer: 'in the room where it happens.',
       thumbNail: 'images/hamiltonThumb.jpg',
       youTube: 'https://youtu.be/BQjGGrKRL8o',
-      fact: 'Hamilton: The Musical'
+      fact: '"Hamilton" began life as "The Hamilton Mixtape," and initially creator Lin-Manuel Miranda thought it might just be a concept album, like "Tommy." The Mixtape\'s public debut came in 2009 at a White House Poetry Jam in front of President Barack and Michelle Obama.  Miranda performed "Alexander Hamilton," and got a standing ovation from the first couple.'
     },
     {
       question: 'What dance would one be describing if they began with, “It’s just a jump to the left, and then a step to the right. With your hands on your hips, you bring your knees in tight…”?',
@@ -84,7 +83,7 @@ const store = {
       correctAnswer: 'The Time Warp',
       thumbNail: 'images/theRockyHorrorPictureShowThumb.jpg',
       youTube: 'https://youtu.be/umj0gu5nEGs?t=51',
-      fact: 'The Rocky Horror Picture SHow'
+      fact: 'What would eventually become The Rocky Horror Show, and later The Rocky Horror Picture Show, began as a way for Richard O’Brien “to spend winter evenings” when he wasn’t working as an actor. O’Brien poured his love of science fiction and horror films into the initial Rocky Horror songs, and eventually he showed the material to director Jim Sharman while they were working on a play together. Sharman took a liking to it, and convinced London’s Royal Court theater to give him a few weeks in the venue’s tiny Upstairs theater to stage a production. It played for only a few dozen people a night, but eventually grew a following. Not bad for something that started as the equivalent “doing the crossword puzzle” for O’Brien.'
     },
     {
       question: 'What movie is this quote from when screamed by an eccentric scientist: "1.21 GIGAWATTS!!!!"',
@@ -97,7 +96,7 @@ const store = {
       correctAnswer: 'Back to the Future',
       thumbNail: 'images/backToTheFutureThumb.jpg',
       youTube: 'https://youtu.be/f-77xulkB_U?t=53',
-      fact: 'Back to the Future'
+      fact: 'The producers wanted Michael J. Fox in the role of Marty McFly, but he was committed to filming Family Ties. So, they had to go with the next best option, Eric Stoltz.\nHowever, Stoltz ended up immediately becoming a problem on set, annoying his cast and crew with his commitment to method acting, and not getting along with co-star Thomas F. Wilson. They also believed his acting style was too dark for the lighthearted character of Marty McFly.'
     },
     {
       question: 'What movie is this quote from after a "perfect" parking job: "LIKE A GLOVE!!!"?',
@@ -110,7 +109,7 @@ const store = {
       correctAnswer: 'Ace Ventura: When Nature Calls',
       thumbNail: 'images/aceVenturaThumb.jpg',
       youTube: 'https://youtu.be/fCy4yhiJw4g?t=193',
-      fact:'Ace Ventura: When Nature Calls'
+      fact:'According to Jeff Daniels, Jim Carrey had explained to him the reasons why he didn\'t like the sequel much. He disliked the whole "Ace is afraid of bats" angle, as he found it to be cheap, and even fought with the director about changing the script so that Ace was merely allergic to bats. Carrey was also very nervous about the film\'s depiction of the native characters, and that people might take offense to them. He\'s even surprised the film hasn\'t been outright banned.'
     },
     {
       question: '"You’re killing me, Smalls” is a famous one-liner from which movie?',
@@ -123,7 +122,7 @@ const store = {
       correctAnswer: 'The Sandlot',
       thumbNail: 'images/sandlotThumb.jpg',
       youTube: 'https://youtu.be/hxJPJ6JY0Pk',
-      fact:'The Sandlot'
+      fact:'Ham Porter\'s famous line, "You\'re killing me, Smalls," is a paraphrase of the famous quote, "They\'re killing me out there, Whitey," spoken by Denver Broncos coach Lou Saban. The line was also paraphrased the previous year in another baseball-themed film, A League of Their Own(1992).'
     },
     {
       question: 'What movie is this quote from after they nozzed it all up: "So, unless we intend to do this job in Reno, we\'re in Barney.......Barney Rubble........TROUBLE!"?',
@@ -136,7 +135,7 @@ const store = {
       correctAnswer: 'Ocean\'s Eleven',
       thumbNail: 'images/oceansElevenThumb.jpg',
       youTube: 'https://youtu.be/wvcDT02a1Ec?t=51',
-      fact:'Ocean\'s Elven'
+      fact:'Don Cheadle is uncredited despite having a major role. This is due to a dispute over his billing. Cheadle wanted above the title billing alongside George Clooney, Matt Damon, and Brad Pitt. When he was refused, he refused to be credited at all. Cheadle received above the title billing in Ocean\'s Twelve (2004) and Ocean\'s Thirteen (2007).'
     }
   ],
   quizStarted: false,
@@ -324,7 +323,7 @@ function getResultsHtmlString() {
       <article class ="item border">
         <p> ¯\\_(ツ)_/¯ </p>
         <p>How well did you do?</p>
-        <p>You got ${store.score} out of ${store.questions.length} correct</p>
+        <p>You got ${store.score} out of ${store.questions.length} correct!</p>
       </article>
       <!--Button-->
       <button id="startQuiz" class="item" type="submit">Play Again?</button>
