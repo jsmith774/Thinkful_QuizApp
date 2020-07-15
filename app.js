@@ -34,7 +34,7 @@ const store = {
       fact: 'Most of the film’s special effects were computer-generated, but not everything was digital. For the robot cockpit scenes, del Toro had his team build the interior of a full-scale Jaeger head. The finished product stood four stories tall and weighed 20 tons. And like a Tilt-A-Whirl from hell, it was designed to rock around violently on its platform via a network of hydraulics. Once inside, the actors were forced to don 40-pound suits of armor. Then the crew strapped their feet into an apparatus that Charlie Hunnam has compared to a high-resistance elliptical machine.'
     },
     {
-      question: 'Not knowing this answer would be “Inconceivable”. There are many famous lines from “The Princess Bride" including, “I am ______________. You killed my father. Prepare to die”',
+      question: 'Not knowing this answer would be “Inconceivable”. There are many famous lines from “The Princess Bride" including, “My name is ______________. You killed my father. Prepare to die”',
       answers: [
         'John Rambo',
         'Inigo Montoya',
@@ -140,61 +140,22 @@ const store = {
   ],
   quizStarted: false,
   questionNumber: 0,
-  score: 0
+  score: 0,
+  correct: true,
+  answerStatusClass: '',
+  answerStatus: ''
 };
 
-let correct = true;
-let answerStatusClass = '';
-let answerStatus = '';
+
 
 /*This function is to be run on document load to start application processing */
 function main() {
 
-  /**********  EVENT HANDLER FUNCTIONS **********/
-
-  //QuestionView 'submitAnswer' button event handler
-  $('body').on('click', '#submitAnswer', event => {
-    correct = checkAnswer();
-
-    if (correct) {
-      store.score++;
-      answerStatusClass = 'correctAnswer';
-      answerStatus = 'CORRECT';
-    } else {
-      answerStatusClass = 'incorrectAnswer';
-      answerStatus = 'INCORRECT';
-    }
-
-    store.questionNumber++;
-
-    render(getFeedbackViewHtml());
-  });
-
-  //FeedbackView 'next' button event handler
-  $('body').on('click', '#continueQuiz', event => {
-    if (store.questionNumber < store.questions.length) {
-      //continue to next question
-      render(getQuestionViewHtml());
-    } else {
-      //quiz is over, go to ResultsView
-      render(getResultsViewHtml());
-    }
-  });
-
-  //Intro/Results "start quiz" button event handler
-  $('body').on('click', '#startQuiz', event => {
-    store.score = 0;
-    store.questionNumber = 0;
-    render(getQuestionViewHtml());
-  });
-
-
-  //enable submit button on question after an answer is selected (disabled initally to prevent skipping without answering)
-  $('body').on('click', 'input', event => {
-    $('button').removeAttr('disabled');
-  });
-
-
+  /**********  EVENT HANDLER FUNCTIONS IN MAIN  **********/
+  submitAnswer();
+  nextQuestionOnFeedback();
+  startQuiz();
+  enableSubmitButton();
 
   /********* RENDER INTIAL PAGE INTRO VIEW **************/
   //Display introView on inital document load
@@ -208,6 +169,57 @@ function checkAnswer() {
   return selectedAnswer === correctAnswer;
 }
 
+/**********  EVENT HANDLER FUNCTIONS **********/
+
+//QuestionView 'submitAnswer' button event handler
+function submitAnswer() {
+
+  $('body').on('click', '#submitAnswer', event => {
+    store.correct = checkAnswer();
+
+    if (store.correct) {
+      store.score++;
+      store.answerStatusClass = 'correctAnswer';
+      store.answerStatus = 'CORRECT';
+    } else {
+      store.answerStatusClass = 'incorrectAnswer';
+      store.answerStatus = 'INCORRECT';
+    }
+
+    store.questionNumber++;
+
+    render(getFeedbackViewHtml());
+  });
+}
+
+//FeedbackView 'next' button event handler
+function nextQuestionOnFeedback() {
+  $('body').on('click', '#continueQuiz', event => {
+    if (store.questionNumber < store.questions.length) {
+      //continue to next question
+      render(getQuestionViewHtml());
+    } else {
+      //quiz is over, go to ResultsView
+      render(getResultsViewHtml());
+    }
+  });
+}
+
+//Intro/Results "start quiz" button event handler
+function startQuiz() {  
+  $('body').on('click', '#startQuiz', event => {
+    store.score = 0;
+    store.questionNumber = 0;
+    render(getQuestionViewHtml());
+  });
+}
+
+//enable submit button on question after an answer is selected (disabled initally to prevent skipping without answering)
+function enableSubmitButton() {
+  $('body').on('click', 'input', event => {
+    $('button').removeAttr('disabled');
+  });
+}
 
 /********** TEMPLATE GENERATION FUNCTIONS **********/
 // These functions return HTML templates
@@ -240,6 +252,8 @@ function getResultsViewHtml() {
 function render(html) {
   $('main').html(html);
 }
+
+
 
 
 
@@ -294,7 +308,7 @@ function getFeedbackHtmlString() {
     </section>
     <section id="result">
       Your answer was:
-      <span class="${answerStatusClass}">${answerStatus}</span>
+      <span class="${store.answerStatusClass}">${store.answerStatus}</span>
     </section>
     <section id="answerBlock">
       The correct answer is:
@@ -334,7 +348,7 @@ function getResultsHtmlString() {
   case 4:
   case 3:
   case 2:
-  case 1:  
+  case 1:
     result = 'images/youTried.jpg';
     break;
   case 0:
